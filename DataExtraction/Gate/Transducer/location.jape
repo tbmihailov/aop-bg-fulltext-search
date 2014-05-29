@@ -1,0 +1,67 @@
+﻿Phase: Location
+Input: Lookup Token Location TreeTaggerToken Person
+Options: control = appelt
+
+Rule: Country1
+(
+   ({Lookup.minorType == "country"})
+):CountryName
+-->
+:CountryName.Location = {kind = "Location", subtype= "country", rule = "Country1"}
+
+//Bulgarian Cities/Viliages
+//гр. София
+//с. Хайредин
+//todor
+Rule: City_by_prefix_bg
+(
+   (
+   {Token.string == "Град"}
+   |
+   {Token.string == "град"}
+   |
+   {Token.string == "Гр"}
+   |
+   {Token.string == "гр"}
+   |
+   {Token.string == "Гр."}
+   |
+   {Token.string == "гр."}
+   |
+   {Token.string == "Село"}
+   |
+   {Token.string == "село"}
+   |
+   {Token.string == "С."}
+   |
+   {Token.string == "с."}
+	)
+   ({Token.orth == "upperInitial"}
+   |
+   {Token.locType == "city"}
+   )
+):city_name
+-->
+:city_name.Location = {kind = "Location", subtype="city", rule = "city_by_prefix_bg"}
+
+
+// republics in Bulgarian
+// Република България
+//todor
+Rule: Country_by_republic_bg
+(
+	(
+	{Token.string == "Република"}
+	|
+	{Token.string == "РЕПУБЛИКА"}
+	)
+	(
+	{Token.orth == "upperInitial"}
+	|
+	{Token.orth == "allCaps"}
+	)
+):rep
+-->
+:rep.Location = {kind = "Location", subtype="country", rule = "country_by_republic_bg"}
+
+

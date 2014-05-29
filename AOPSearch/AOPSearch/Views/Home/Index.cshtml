@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<div style="text-align: center;">
+    <h1>AOP Fulltext Search</h1>
+    <h3>Търсене на обществени поръчки от порталана AOP.bg</h3>
+    <form method="get" action="@Url.Action("IndexSearch")">
+        @Html.TextBox("q", "", new { placeholder = "Търсене на обществена поръчка", style="width:80%" })
+        <br />
+        <input type="submit" value="Търси" style="width:400px"/>
+        @Html.ActionLink("Advanced", "IndexSearch", "Home")
+    </form>
+</div>

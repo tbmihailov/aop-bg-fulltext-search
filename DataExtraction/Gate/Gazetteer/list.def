@@ -1,0 +1,4 @@
+companies_assigners.lst:organization:aop_assigner
+companies_assigners_ext.lst:organization:aop_assigner
+procedure_type.lst:procedure_info:procedure_type
+procedure_status.lst:procedure_info:procedure_status

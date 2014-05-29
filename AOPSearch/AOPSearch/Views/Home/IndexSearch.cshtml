@@ -1,0 +1,148 @@
+﻿@model AOPSearch.Models.CaseView
+@using SolrUtils.Helpers
+@using SolrUtils.Models
+@using AOPSearch.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<form method="get" action="@Url.Action("IndexSearch")">
+    @Html.TextBox("q", Model.Search.FreeSearch)
+    <input type="submit" value="Search" />
+    @if (!string.IsNullOrEmpty(Model.DidYouMean))
+    { 
+        <div>
+            Did you mean <strong><em><a href="@Url.ForQuery(Model.DidYouMean)">@Model.DidYouMean</a></em></strong>
+        </div>
+    }
+    @if (Model.QueryError)
+    { 
+        <span class="error">Invalid query</span>
+    }
+</form>
+
+
+<div class="leftColumn">
+    @foreach (var f in Model.Search.Facets)
+    { 
+        <ul>
+            <li>
+                @(Html.SolrFieldPropName<AOPSearch.Models.Case>(f.Key))
+                <ul>
+                    <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key)">@f.Value</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+
+    <ul>
+        @foreach (var f in Model.Facets)
+        { 
+            <li>@(Html.SolrFieldPropName<Case>(f.Key))
+                <ul>
+                    @foreach (var fv in f.Value)
+                    { 
+                        <li><a href="@Url.SetFacet(f.Key, fv.Key)">@fv.Key</a> <span>(@fv.Value)</span></li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="rightColumn">
+
+    <div>
+        Sort by: 
+            @if (string.IsNullOrEmpty(Model.Search.Sort))
+            { 
+                <strong>Best match</strong>
+            }
+            else
+            {
+                <a href="@Url.RemoveParameters("sort")">Best match</a>
+            }
+        |
+            @if (Model.Search.Sort == "alphaNameSort")
+            {
+                <strong>Name</strong>
+            }
+            else
+            {
+                <a href="@Url.SetParameter("sort", "alphaNameSort")">Name</a>
+            }
+        |
+            @if (Model.Search.Sort == "max_amount")
+            {
+                <strong>Max amount</strong>
+            }
+            else
+            {
+                <a href="@Url.SetParameter("sort", "max_amount")">Max Amount</a>
+            }
+        @*        |
+            @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random")))
+            { 
+                <strong>Random</strong>
+            }
+            else
+            {
+                <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber())">Random</a>
+            }*@
+    </div>
+
+    <div>
+        @{
+            int i = 0;
+        }
+        @foreach (var p in Model.Cases)
+        {
+            i++;
+            <hr />
+            <div class="caseItem @(i % 2 == 0 ? "odd" : "even")">
+                #:<span>@p.Id</span><br />
+                <b>Възложител:</b><span>@p.Assigner</span><br />
+                <b>Име:</b><span>@p.Name</span><br />
+                <b>Статус:</b><span>@p.Status</span><br />
+                <b>Получена на:</b><span>@p.Recieved</span><br />
+
+
+                <span><b>Описание:</b></span><br />
+                <p>@p.Description</p>
+                <br />
+
+                Сума/суми: <span class="amount">@p.MaxAmount.ToString("C")</span><br />
+                <a href="@p.Url">Преглед (на http://aop.bg)</a>
+                <br />
+                <b>Score:@p.Score</b>
+                @*Categories: <% Html.Repeat(p.Categories, cat => { %>
+                    <a href="<%= Url.SetFacet("cat", cat) %>"><%= cat %></a><% }, () => {%>, <% }); %>*@
+            </div>
+        }
+    </div>
+
+    @Html.Partial("_Pagination", new PaginationInfo
+{
+    PageUrl = Url.SetParameter("page", "!0"),
+    CurrentPage = Model.Search.PageIndex,
+    PageSize = Model.Search.PageSize,
+    TotalItemCount = Model.TotalCount,
+})
+
+    <div class="pagesize">
+
+        @foreach (var ps in new[] { 5, 10, 20 })
+        {
+            if (ps == Model.Search.PageSize)
+            { 
+            <span>@ps</span>
+            }
+            else
+            {
+            <a href="@Url.SetParameters(new { pagesize = ps, page = 1 })">@ps</a>
+            }
+        }
+
+    </div>
+</div>
+

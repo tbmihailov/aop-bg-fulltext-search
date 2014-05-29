@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPSearch", "AOPSearch\AOPSearch.csproj", "{24C1DA2D-993B-4EBC-8798-134843BBF32A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPSearch.Crawler", "AOPSearch.Crawler\AOPSearch.Crawler.csproj", "{AE155068-5618-4AED-8782-AC46B32A0A20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utils", "Common.Utils\Common.Utils.csproj", "{C383D1E5-A5BC-4DFB-B554-ABF6CB2C7B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPSearch.SolrClient", "AOPSearch.SolrClient\AOPSearch.SolrClient.csproj", "{D779746E-5013-47BD-A56A-8A448021D7B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24C1DA2D-993B-4EBC-8798-134843BBF32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C1DA2D-993B-4EBC-8798-134843BBF32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C1DA2D-993B-4EBC-8798-134843BBF32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C1DA2D-993B-4EBC-8798-134843BBF32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE155068-5618-4AED-8782-AC46B32A0A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE155068-5618-4AED-8782-AC46B32A0A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE155068-5618-4AED-8782-AC46B32A0A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE155068-5618-4AED-8782-AC46B32A0A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C383D1E5-A5BC-4DFB-B554-ABF6CB2C7B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C383D1E5-A5BC-4DFB-B554-ABF6CB2C7B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C383D1E5-A5BC-4DFB-B554-ABF6CB2C7B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C383D1E5-A5BC-4DFB-B554-ABF6CB2C7B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D779746E-5013-47BD-A56A-8A448021D7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D779746E-5013-47BD-A56A-8A448021D7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D779746E-5013-47BD-A56A-8A448021D7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D779746E-5013-47BD-A56A-8A448021D7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

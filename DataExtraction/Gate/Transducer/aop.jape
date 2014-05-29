@@ -1,0 +1,20 @@
+Phase: AOPData  
+Input: Lookup  
+Options: control = brill debug = true  
+ 
+Rule: Woman (  
+  {Lookup.majorType == person_first, Lookup.minorType == female} 
+ ):person1  
+-->  
+ :person1.Woman = {rule = "Woman"} 
+
+ 
+Phase: Person  
+Input: Lookup  
+Options: control = brill debug = true  
+ 
+Rule: Man (  
+  {Lookup.majorType == person_first, Lookup.minorType == male}   
+):person  
+-->  
+ :person.Man = {rule = "Man"} 
